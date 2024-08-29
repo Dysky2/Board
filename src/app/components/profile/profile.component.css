@@ -1,0 +1,21 @@
+.profile_container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 25%;
+}
+
+.profile-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    
+    background-color: white;
+
+}
+
+.profile-name {
+    margin-left: 10px;
+    font-size: 0.9rem;
+}

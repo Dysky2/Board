@@ -1,0 +1,84 @@
+<app-nav [name]="'Marketplace'" [displayValue]="'9 products'"></app-nav>
+
+<div class="marketplace_container">
+    <div class="searchBar_container">
+        <mat-form-field class="searchBar">
+            <mat-label>Search for products</mat-label>
+            <span matTextPrefix class="d-flex align-items-center">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="search" ></mat-icon>
+                &nbsp;
+            </span>
+            <input type="search" placeholder="Search for products" matInput>
+        </mat-form-field>
+
+        <mat-form-field class="filter">
+            <mat-label>filters</mat-label>
+            <span matTextPrefix class="d-flex align-items-center">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="filter_alt" ></mat-icon>
+                &nbsp;
+            </span>
+            <mat-select [formControl]="toppings" multiple>
+                <mat-select-trigger>
+                  {{toppings.value?.[0] || ''}}
+                  @if ((toppings.value?.length || 0) > 1) {
+                    <span class="example-additional-selection">
+                      (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 3 ? 'other' : 'others'}})
+                    </span>
+                  }
+                </mat-select-trigger>
+                @for (topping of toppingList; track topping) {
+                    <mat-option [value]="topping">{{topping}}</mat-option>
+                  }
+            </mat-select>
+        </mat-form-field>
+
+        <div class="changer d-flex align-items-center">
+            <mat-button-toggle-group hideSingleSelectionIndicator="true">
+                <mat-button-toggle value="list">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="list"></mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle value="grid" checked>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="grid_on"></mat-icon>
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+
+    </div>
+
+
+    <div class="filters_container">
+        @for (item of filters; track $index) {
+            <mat-chip-set class="filter-chip">
+                <mat-chip-row class="filter_border">
+                    {{item}}
+                    <button matChipRemove>
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="cancel"></mat-icon>
+                    </button>
+                </mat-chip-row>
+            </mat-chip-set>
+            @if(isTheLastItem(filters, item)) {
+                <mat-chip-set class="filter-chip">
+                    <mat-chip-row class="clear_button">
+                        Clear all
+                        <button matChipRemove>
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
+                        </button>
+                    </mat-chip-row>
+                </mat-chip-set>
+            }
+        }
+    </div>
+    
+    <!-- <button (click)="createNewProduct()"> add product</button> -->
+
+    <mat-grid-list cols="4" rowHeight="5:4" gutterSize="10">
+        <mat-grid-tile class="product_container" *ngFor="let product of products">
+            <div class="product">
+                <div class="img_container d-flex justify-content-center">
+                    <img src="img/{{product.photo}}">
+                </div>
+                <h4 class="name_container">{{product.name}}</h4>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

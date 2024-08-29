@@ -1,0 +1,94 @@
+
+<div
+  [ngClass]="isLeftSidebarCollapsed() ? 'sidenav-collapsed' : ''"
+  class="sidenav">
+  <div class="logo-container">
+    @if (!isLeftSidebarCollapsed()) {
+      <div class="logo-text">App</div>
+    }
+    <button class="logo" (click)="toggleCollapse()">
+      <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="menu"></mat-icon>
+    </button>
+  </div>
+  <div class="sidenav-nav">
+    @for (item of items; track $index) {
+      @if(!isLeftSidebarCollapsed()) {
+        <p class="sidenav-nav-category">{{item.category}}</p>
+      } @else {
+        <p class="sidenav-nav-category" style="display: flex; justify-content: center;">{{item.category[0]}}</p>
+      }
+      @for (routerItem of item.routerItems; track $index) {
+        <li class="sidenav-nav-item">
+          <a
+            [class]="!isLeftSidebarCollapsed() ? 'ml-2' : 'justify-center'"
+            class="sidenav-nav-link "
+            [routerLink]="routerItem.routeLink"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+          <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon={{routerItem.icon}} ></mat-icon>
+            @if (!isLeftSidebarCollapsed()) {
+              <span class="sidenav-link-text">{{ routerItem.label }}</span>
+            }
+          </a>
+        </li>
+      }
+    }
+  </div>
+</div> 
+
+  <!-- <div class="profile-login_container">
+    <div class="profile_conatiner">
+      <div class="profile_logo"></div>
+      <div class="profile_name">
+        <div>Dawid Molik</div>
+        <div>Head Admin</div>
+      </div>
+    </div>
+    <div class="login_container">
+      <div class="login_container-icon_conatiner">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="logout"></mat-icon>
+      </div>
+      <div class="login_container-text">
+        <span>Log out</span>
+      </div>
+    </div>
+  </div> -->
+
+<!-- <mat-drawer-container>
+  <mat-drawer #drawer mode="side" class="sidenav" [class]="isLeftSidebarCollapsed() ? 'sidenav-collapsed' : ''" opened>
+    <div class="logo-container">
+      @if (!isLeftSidebarCollapsed()) {
+        <div class="logo-text">App</div>
+      }
+      <button class="logo" (click)="toggleCollapse()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="menu"></mat-icon>
+      </button>
+    </div>
+    <div class="sidenav-nav">
+      @for (item of items; track $index) {
+        @if(!isLeftSidebarCollapsed()) {
+          <p class="sidenav-nav-category">{{item.category}}</p>
+        } @else {
+          <p class="sidenav-nav-category" style="display: flex; justify-content: center;">{{item.category[0]}}</p>
+        }
+        @for (routerItem of item.routerItems; track $index) {
+          <li class="sidenav-nav-item">
+            <a
+              [class]="!isLeftSidebarCollapsed() ? 'ml-2' : 'justify-center'"
+              class="sidenav-nav-link "
+              [routerLink]="routerItem.routeLink"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon={{routerItem.icon}} ></mat-icon>
+              @if (!isLeftSidebarCollapsed()) {
+                <span class="sidenav-link-text">{{ routerItem.label }}</span>
+              }
+            </a>
+          </li>
+        }
+      }
+    </div>
+  </mat-drawer>
+</mat-drawer-container> -->

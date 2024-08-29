@@ -1,0 +1,84 @@
+<app-nav [name]="'Dashboard'"></app-nav>
+    
+<div class="dashboard">
+    <div class="stats-cards">
+        <div class="stat-card">
+            <div class="d-flex align-items-start justify-content-start">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="group"></mat-icon>
+                <h3>Total customers</h3>
+            </div>
+            <div class="stat-value">
+                567,899 <span class="stat-change positive">▲ 2.5%</span>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="d-flex align-items-start justify-content-start">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="currency_exchange"></mat-icon>
+                <h3>Total revenue</h3>
+            </div>
+            <div class="stat-value">
+                $3,465 M <span class="stat-change positive">▲ 0.5%</span>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="d-flex align-items-start justify-content-start">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="shopping_cart"></mat-icon>
+                <h3>Total orders</h3>
+            </div>
+            <div class="stat-value">
+                1,136 M <span class="stat-change negative">▼ 0.2%</span>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="d-flex align-items-start justify-content-start">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="storefront"></mat-icon>
+                <h3>Total returns</h3>
+            </div>
+            <div class="stat-value">
+                1,789 <span class="stat-change positive">▲ 0.12%</span>
+            </div>
+        </div>
+        <div class="stat-card add-data">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="library_add"></mat-icon>
+            <button disabled mat-button>Add data</button>
+        </div>
+    </div>
+    
+    <div class="charts">
+        <div class="chart">
+            <h3>Product sales</h3>
+            <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                >
+            </canvas>
+        </div>
+    
+        <div class="chart-grid">
+            <div class="chart">
+                <h3>Sales by product category</h3>
+                <!-- <canvas baseChart [labels]="doughnutChartLabels">
+                </canvas> -->
+        </div>
+    
+        <div class="chart">
+            <h3>Sales by countries</h3>
+            <!-- Placeholder for Country Chart -->
+            <ul class="country-sales">
+            <li>Poland <span>19%</span></li>
+            <li>Austria <span>15%</span></li>
+            <li>Spain <span>13%</span></li>
+            <li>Romania <span>12%</span></li>
+            <li>France <span>11%</span></li>
+            <li>Italy <span>11%</span></li>
+            <li>Germany <span>10%</span></li>
+            <li>Ukraine <span>9%</span></li>
+            </ul>
+        </div>
+        </div>
+    </div>
+    </div>
