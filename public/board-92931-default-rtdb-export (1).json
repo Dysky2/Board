@@ -1,0 +1,90 @@
+{
+  "products": {
+    "-O5P09j7b9lr3OG5roj2": {
+      "category": "kitchen",
+      "color": "white",
+      "dimensions": "W 350, H 300",
+      "id": "3",
+      "name": "sofa",
+      "price": 224
+    },
+    "-O5P0MGy6AaijXCO2qB-": {
+      "productId": {
+        "category": "kitchen",
+        "color": "white",
+        "dimensions": "W 350, H 300",
+        "id": "4",
+        "name": "sofa",
+        "price": 224
+      }
+    },
+    "-O5P4ez6i5WTbwuKc3Be": {
+      "category": "Bedroom",
+      "color": "whitblacke",
+      "dimensions": "W 150, H 200",
+      "id": "5",
+      "name": "sofa",
+      "price": 111
+    },
+    "-O5P4zqK2WI07C7qaX9r": {
+      "category": "Bedroom",
+      "color": "whitblacke",
+      "dimensions": "W 150, H 200",
+      "id": "5",
+      "name": "sofa",
+      "price": 111
+    },
+    "ABFBG": {
+      "category": "living room",
+      "color": "brown",
+      "dimensions": "",
+      "id": "1",
+      "name": "biurko",
+      "price": 123
+    },
+    "BJFKF": {
+      "-O5P1mMX9i64lPt-SeCG": {
+        "category": "Bedroom",
+        "color": "whitblacke",
+        "dimensions": "W 150, H 200",
+        "id": "5",
+        "name": "sofa",
+        "price": 111
+      },
+      "-O5P2GlemxyIph0oyNW-": {
+        "category": "Bedroom",
+        "color": "whitblacke",
+        "dimensions": "W 150, H 200",
+        "id": "5",
+        "name": "sofa",
+        "price": 111
+      },
+      "-O5P2sp47TDyexho5GGw": {
+        "category": "Bedroom",
+        "color": "whitblacke",
+        "dimensions": "W 150, H 200",
+        "id": "5",
+        "name": "sofa",
+        "price": 111
+      }
+    },
+    "KKKKK": {
+      "-O5P4ZD7goxAq1GXqXdX": {
+        "category": "Bedroom",
+        "color": "whitblacke",
+        "dimensions": "W 150, H 200",
+        "id": "5",
+        "name": "sofa",
+        "price": 111
+      }
+    },
+    "product_id": {
+      "category": "",
+      "color": "",
+      "dimensions": "",
+      "id": "2",
+      "name": "chair",
+      "price": 999
+    }
+  }
+}

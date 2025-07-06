@@ -1,9 +1,22 @@
+@import url('../../../styles.css');
+
+:host {
+    display: flex;
+    align-items: center;
+}
+
 .profile_container {
     display: flex;
     align-items: center;
     cursor: pointer;
-    padding: 10px;
-    border-radius: 25%;
+    padding: 10px 20px 10px 20px;
+    border-radius: 25px;
+    border: 1px solid var(--bg-color);
+    transition: all 0.5s ease;
+}
+
+.loginProfile:hover {
+    background-color: white;
 }
 
 .profile-icon {
@@ -18,4 +31,48 @@
 .profile-name {
     margin-left: 10px;
     font-size: 0.9rem;
+}
+
+.cart_container {
+    transition: all 0.5s ease;
+    margin-left: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    font-size: 1.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart_container:hover  {
+    background-color: white;
+}
+
+.login {
+    padding: 15px 20px;
+    cursor: pointer;
+    color: var(--text-color);
+    text-decoration: none;
+    border: 1px solid  rgb(244, 247, 250);
+    background-color:  rgb(244, 247, 250);
+}
+
+.singUp {
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 15px;
+    padding: 15px 20px;
+    border-radius: 15px;
+    color: white;
+    background-color: rgb(13, 12, 34);
+}
+
+.singUp:hover {
+    opacity: 0.8;
+}
+
+.matMenu_logOut {
+    color: rgb(255, 103, 103);
 }

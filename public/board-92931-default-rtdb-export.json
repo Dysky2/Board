@@ -1,0 +1,40 @@
+{
+  "products": {
+    "-O5P09j7b9lr3OG5roj2": {
+      "id": "1",
+      "name": "sofa",
+      "price": 224,
+      "photo": "chari1.jpg",
+      "color": "white",
+      "category": "kitchen",
+      "dimensions": "W 350, H 300"
+    },
+    "productId": {
+      "id": "2",
+      "name": "sofa",
+      "price": 224,
+      "photo": "sofa1.jpg",
+      "color": "white",
+      "category": "kitchen",
+      "dimensions": "W 350, H 300"
+    },
+    "-O5P09j7b9lr3OG5roj2-": {
+      "id": "3",
+      "name": "sofa",
+      "price": 224,
+      "photo": "szafa1.jpg",
+      "color": "white",
+      "category": "kitchen",
+      "dimensions": "W 350, H 300"
+    },
+    "product_id": {
+      "id": "4",
+      "name": "sofa",
+      "price": 224,
+      "photo": "chari1.jpg",
+      "color": "white",
+      "category": "kitchen",
+      "dimensions": "W 350, H 300"
+    }
+  }
+}

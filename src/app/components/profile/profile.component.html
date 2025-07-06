@@ -1,6 +1,27 @@
-<div class="profile_container">
+<div class="profile_container loginProfile" *ngIf="($isLogged | async)" [matMenuTriggerFor]="beforeMenu">
     <img class="profile-icon" src="img/zdj.jpg">
     <div class="profile-name">
-        Dawid Molik
+        {{$loggedUser | async}}
     </div>
+    <mat-divider vertical></mat-divider>
+</div>
+<div class="cart_container" (click)="openShoppingCart()">
+    <mat-icon class="cart" fontIcon="shopping_cart"></mat-icon>
+</div>
+
+<mat-menu #beforeMenu="matMenu" xPosition="before">
+    <button mat-menu-item>Item 1</button>
+    <button (click)="logOut()" class="matMenu_logOut" mat-menu-item>Wyloguj sie</button>
+  </mat-menu>
+
+<!-- <div class="profile_container">
+    <div class="d-flex flex-column align-items-center">
+        <mat-icon fontIcon="person"></mat-icon>
+        <div>Log in</div>
+    </div>
+</div> -->
+
+<div class="profile_container" *ngIf="!($isLogged | async)">
+    <a class="login" href="/login">Log in</a>
+    <a class="singUp" href="/signup">Sign up</a>
 </div>

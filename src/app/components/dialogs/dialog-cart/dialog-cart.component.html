@@ -1,0 +1,13 @@
+<div class="d-flex align-items-center justify-content-between">
+    <h2 mat-dialog-title>You have added to cart:</h2>
+    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="close"></mat-icon>
+</div>
+<mat-divider class="divider-line"></mat-divider>
+<mat-dialog-content>
+  <div>{{data.product.name}}</div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Continue browsing</button>
+  <button mat-button [mat-dialog-close] cdkFocusInitial routerLink="/">Go to cart</button>
+</mat-dialog-actions>

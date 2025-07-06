@@ -1,84 +1,181 @@
-<app-nav [name]="'Marketplace'" [displayValue]="'9 products'"></app-nav>
+<mat-drawer-container>
+    <mat-drawer #drawer position="end" class="product_drawer" mode="over" (closed)="onDrawerClose()">
+        <div *ngFor="let item of selectedProduct" class="drawer_container">
+            <div class="d-flex align-items-center back_container" (click)="drawer.close()" routerLink="./">
+                <mat-icon aria-hidden="false" aria-label="arrow icon" style="font-size: 1.45rem;" fontIcon="arrow_back"></mat-icon>
+                <div style="margin-left: 5px; font-size: 1.25rem;">Powrót</div>
+            </div>
+            <div class="img_container">
+                <img src="/img/{{item.photo}}" alt="">
+            </div>
+            <div class="d-flex align-items-center justify-content-center name_container" style="font-size: 2.0rem;">
+                {{item.name}}
+            </div>
 
-<div class="marketplace_container">
-    <div class="searchBar_container">
-        <mat-form-field class="searchBar">
-            <mat-label>Search for products</mat-label>
-            <span matTextPrefix class="d-flex align-items-center">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="search" ></mat-icon>
-                &nbsp;
-            </span>
-            <input type="search" placeholder="Search for products" matInput>
-        </mat-form-field>
+            <div class="d-flex price_container flex-wrap">
+                <div class="d-flex align-items-center justify-content-start" style="width: 50%;">
+                    <button matPrefix (click)="decrement(counter.value)"> 
+                        <mat-icon fontIcon="remove"></mat-icon>
+                    </button>
+                    <input 
+                        class="offer_count" 
+                        type="number" 
+                        min="0" 
+                        oninput="this.value = !!this.value && Math.abs(this.value) >= 0 && Math.abs(this.value) <= 99  ? Math.abs(this.value) : null" 
+                        [(ngModel)]="counterValue"
+                        maxlength="2" 
+                        value="1" 
+                        #counter>
+                    <button matSuffix (click)="incrementValue(counter.value)"> 
+                        <mat-icon fontIcon="add"></mat-icon>
+                    </button>
+                </div>
+                <div class="d-flex align-items-center justify-content-end" style="width: 50%;">
+                    ${{item.price}},-
+                </div>
+                <button class="add_to_cart" (click)="addToCart(item)">
+                    Add to cart
+                </button>
+            </div>
+            <div class="product_details_container">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Dimensiones
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      
+                      <div>
+                        <div class="d-flex justify-content-between w-100 mb-2">
+                            <div class="w-75">Width</div>
+                            <div class="w-25">{{this.selectedProduct[0].dimensions.split(' H')[0].split('W ')[1]}}</div>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="d-flex justify-content-between w-100 mt-2 mb-2">
+                            <div class="w-75">Height</div>
+                            <div class="w-25">{{this.selectedProduct[0].dimensions.split('H ')[1]}}</div>
+                        </div>
+                        <mat-divider></mat-divider>
+                      </div>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+            </div>  
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <app-nav [name]="'Marketplace'" [displayValue]="products.length + ' products'"></app-nav>
 
-        <mat-form-field class="filter">
-            <mat-label>filters</mat-label>
-            <span matTextPrefix class="d-flex align-items-center">
-                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="filter_alt" ></mat-icon>
-                &nbsp;
-            </span>
-            <mat-select [formControl]="toppings" multiple>
-                <mat-select-trigger>
-                  {{toppings.value?.[0] || ''}}
-                  @if ((toppings.value?.length || 0) > 1) {
-                    <span class="example-additional-selection">
-                      (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 3 ? 'other' : 'others'}})
+        <div class="marketplace_container">
+            <div class="searchBar_container">
+                <mat-form-field class="searchBar">
+                    <mat-label>Search for products</mat-label>
+                    <span matTextPrefix class="d-flex align-items-center">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="search" ></mat-icon>
+                        &nbsp;
                     </span>
-                  }
-                </mat-select-trigger>
-                @for (topping of toppingList; track topping) {
-                    <mat-option [value]="topping">{{topping}}</mat-option>
-                  }
-            </mat-select>
-        </mat-form-field>
-
-        <div class="changer d-flex align-items-center">
-            <mat-button-toggle-group hideSingleSelectionIndicator="true">
-                <mat-button-toggle value="list">
-                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="list"></mat-icon>
-                </mat-button-toggle>
-                <mat-button-toggle value="grid" checked>
-                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="grid_on"></mat-icon>
-                </mat-button-toggle>
-            </mat-button-toggle-group>
+                    <input type="search" placeholder="Search for products" matInput>
+                </mat-form-field>
+        
+                <mat-form-field class="filter">
+                    <mat-label>filters</mat-label>
+                    <span matTextPrefix class="d-flex align-items-center">
+                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="filter_alt" ></mat-icon>
+                        &nbsp;
+                    </span>
+                    <mat-select [formControl]="toppings" multiple>
+                        <mat-select-trigger>
+                          {{toppings.value?.[0] || ''}}
+                          @if ((toppings.value?.length || 0) > 1) {
+                            <span class="example-additional-selection">
+                              (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 3 ? 'other' : 'others'}})
+                            </span>
+                          }
+                        </mat-select-trigger>
+                        @for (topping of toppingList; track topping) {
+                            <mat-option [value]="topping">{{topping}}</mat-option>
+                          }
+                    </mat-select>
+                </mat-form-field>
+        
+                <div class="changer d-flex align-items-center">
+                    <mat-button-toggle-group hideSingleSelectionIndicator="true">
+                        <mat-button-toggle value="list" checked>
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="list"></mat-icon>
+                        </mat-button-toggle>
+                        <mat-button-toggle value="grid">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="grid_on"></mat-icon>
+                        </mat-button-toggle>
+                    </mat-button-toggle-group>
+                </div>
+        
+            </div>
+        
+        
+            <div class="filters_container">
+                @for (item of filters; track $index) {
+                    <mat-chip-set class="filter-chip">
+                        <mat-chip-row class="filter_border">
+                            {{item}}
+                            <button matChipRemove>
+                                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="cancel"></mat-icon>
+                            </button>
+                        </mat-chip-row>
+                    </mat-chip-set>
+                    @if(isTheLastItem(filters, item)) {
+                        <mat-chip-set class="filter-chip">
+                            <mat-chip-row class="clear_button">
+                                Clear all
+                                <button matChipRemove>
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
+                                </button>
+                            </mat-chip-row>
+                        </mat-chip-set>
+                    }
+                }
+            </div>
         </div>
 
-    </div>
-
-
-    <div class="filters_container">
-        @for (item of filters; track $index) {
-            <mat-chip-set class="filter-chip">
-                <mat-chip-row class="filter_border">
-                    {{item}}
-                    <button matChipRemove>
-                        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="cancel"></mat-icon>
-                    </button>
-                </mat-chip-row>
-            </mat-chip-set>
-            @if(isTheLastItem(filters, item)) {
-                <mat-chip-set class="filter-chip">
-                    <mat-chip-row class="clear_button">
-                        Clear all
-                        <button matChipRemove>
-                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete"></mat-icon>
-                        </button>
-                    </mat-chip-row>
-                </mat-chip-set>
-            }
-        }
-    </div>
-    
-    <!-- <button (click)="createNewProduct()"> add product</button> -->
-
-    <mat-grid-list cols="4" rowHeight="5:4" gutterSize="10">
-        <mat-grid-tile class="product_container" *ngFor="let product of products">
-            <div class="product">
-                <div class="img_container d-flex justify-content-center">
-                    <img src="img/{{product.photo}}">
+        <mat-grid-list cols="2" rowHeight="4:2" gutterSize="15">
+            <mat-grid-tile (click)="productSelect(product)" class="product_container" 
+            *ngFor="let product of products" (click)="drawer.toggle()">
+                <!-- <mat-checkbox class="select_product"></mat-checkbox> -->
+                <div class="product_img_container">
+                    <img class="product_img" src="/img/{{product.photo}}" alt="chair">
                 </div>
-                <h4 class="name_container">{{product.name}}</h4>
-            </div>
-        </mat-grid-tile>
-    </mat-grid-list>
-</div>
+    
+                <div class="product_info_container">
+                    <div class="product_info_container-left">
+                        <div>
+                            <div class="product_info-name">Display name</div>
+                            <div class="product_info-value">{{product.name}}</div>
+                        </div>
+                        <div>
+                            <div class="product_info-name">Item id</div>
+                            <div class="product_info-value">{{product.productId}}</div>
+                        </div>
+                        <div>
+                            <div class="product_info-name">Price</div>
+                            <div class="product_info-value">${{product.price}}</div>
+                        </div>
+                    </div>
+                    <div class="product_info_container-right">
+                        <div>
+                            <div class="product_info-name">Color</div>
+                            <div class="product_info-value">{{product.color}}</div>
+                        </div>
+                        <div>
+                            <div class="product_info-name">Dimensions</div>
+                            <div class="product_info-value">{{product.dimensions}}</div>
+                        </div>
+                        <div>
+                            <div class="product_info-name">Category</div>
+                            <div class="product_info-value">{{product.category}}</div>
+                        </div>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+        
+    </mat-drawer-content>
+</mat-drawer-container>

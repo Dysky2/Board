@@ -25,6 +25,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrdersComponent } from './components/orders/orders.component';
 import { TrackingComponent } from './components/tracking/tracking.component';
 import { NavComponent } from './components/nav/nav.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { LoginModule } from './components/login/login.module';
+import { DialogLoginComponent } from './components/dialogs/dialog-login/dialog-login.component';
+import { DialogCartComponent } from './components/dialogs/dialog-cart/dialog-cart.component';
+import { ProductInfoComponent } from './components/product-info/product-info.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -37,12 +43,18 @@ import { NavComponent } from './components/nav/nav.component';
     OrdersComponent,
     TrackingComponent,
     NavComponent,
+    SidenavComponent,
+    DialogLoginComponent,
+    DialogCartComponent,
+    ProductInfoComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     RouterModule,
+    LoginModule,
     AngularMaterialModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
@@ -51,7 +63,7 @@ import { NavComponent } from './components/nav/nav.component';
     BaseChartDirective,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     provideCharts(withDefaultRegisterables())

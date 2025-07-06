@@ -1,5 +1,16 @@
+  
+<div *ngIf="(path  | async) !== '/login' && (path  | async) !== '/signup'"  class="sideNav_container" [classList]="isLeftSidebarCollapsed() ? 'sidenNav-close' : 'sideNav_container'">
+  <app-sidenav
+    [isLeftSidebarCollapsed]="isLeftSidebarCollapsed()" 
+    (changeIsLeftSidebarCollapsed)="changeIsLeftSidebarCollapsed($event)"
+    >
+  </app-sidenav>
+</div>
+<router-outlet></router-outlet>
 
-<div
+
+
+<!-- <div
   [ngClass]="isLeftSidebarCollapsed() ? 'sidenav-collapsed' : ''"
   class="sidenav">
   <div class="logo-container">
@@ -35,8 +46,7 @@
       }
     }
   </div>
-</div> 
-
+</div>  -->
   <!-- <div class="profile-login_container">
     <div class="profile_conatiner">
       <div class="profile_logo"></div>
